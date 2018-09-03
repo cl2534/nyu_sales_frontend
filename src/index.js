@@ -7,14 +7,18 @@ import ReactDOM from 'react-dom'
 import { BrowserRouter as Router } from 'react-router-dom'
 
 import 'semantic-ui-css/semantic.min.css'
-
+import reducer from './reducers/reducer'
 import App from './App'
 import usersReducer from './reducers/usersReducer'
 import registerServiceWorker from './registerServiceWorker'
+//
+// const rootReducer = combineReducers({ usersReducer })
+//
+// const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
 
-const rootReducer = combineReducers({ usersReducer })
 
-const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
+const store = createStore(reducer);
+
 
 ReactDOM.render(
   <Provider store={store}>
