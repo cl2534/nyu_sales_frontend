@@ -20,8 +20,9 @@ export default function reducer(state = initialState, action) {
     case 'INCREMENT_OTHER_COUNTER':
       console.log('INCREMENT_OTHER_COUNTER');
       return { ...state, counterer: state.counterer + 1 }
-    case SET_COUNTER:
+    case 'SET_COUNTER':
       return { ...state, counter: action.payload }
     default:
       return state;
   }
+}

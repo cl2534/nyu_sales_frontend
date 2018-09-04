@@ -22,9 +22,10 @@ fetchFiveRecentPosts = () => {
   }))
 }
 
-function mapStateToProps(state) {
-  return {
-    posts: [],
-  }
+// function mapStateToProps(state) {
+//   return {
+//     posts: [],
+//   }
+// }
 }
-export default connect(mapStateToProps)(OnSalePage);
+export default connect()(OnSalePage);

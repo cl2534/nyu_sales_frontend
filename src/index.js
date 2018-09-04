@@ -12,12 +12,9 @@ import App from './App'
 import usersReducer from './reducers/usersReducer'
 import registerServiceWorker from './registerServiceWorker'
 //
-// const rootReducer = combineReducers({ usersReducer })
-//
-// const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
+const rootReducer = combineReducers({ usersReducer })
 
-
-const store = createStore(reducer);
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
 
 
 ReactDOM.render(

@@ -1,4 +1,4 @@
-import { SET_COUNTER } from './types';
+
 
 
 export function incrementAction() {
@@ -10,5 +10,5 @@ export function incrementCountererAction() {
 }
 
 export function setAction(value) {
-  return { type: SET_COUNTER, payload: value };
+  return { type: 'SET_COUNTER', payload: value };
 }

@@ -5,13 +5,13 @@ import { loginUser } from '../actions/user'
 import { Button, Form, Segment, Message } from 'semantic-ui-react'
 
 class LoginForm extends React.Component {
-  state = { username: '', password: '' }
+  state = { email: '', password: '' }
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
   handleLoginSubmit = () => {
-    this.props.loginUser(this.state.username, this.state.password, this.props.history)
-    this.setState({ username: '', password: '' })
+    this.props.loginUser(this.state.email, this.state.password)
+    this.setState({ email: '', password: '' })
   }
 
   render() {
@@ -29,11 +29,11 @@ class LoginForm extends React.Component {
           <Message error header={this.props.failedLogin ? this.props.loginError.message : null} />
           <Form.Group widths="equal">
             <Form.Input
-              label="username"
-              placeholder="username"
-              name="username"
+              label="email"
+              placeholder="email"
+              name="email"
               onChange={this.handleChange}
-              value={this.state.username}
+              value={this.state.email}
             />
             <Form.Input
               type="password"
@@ -55,7 +55,7 @@ const mapStateToProps = state => ({
   authenticatingUser: state.usersReducer.authenticatingUser,
   failedLogin: state.usersReducer.failedLogin,
   loginError: state.usersReducer.error,
-  user: state.usersReducer.username,
+  user: state.usersReducer.email,
   loggedIn: state.usersReducer.loggedIn
 })
 
