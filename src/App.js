@@ -6,10 +6,11 @@ import Nav from './components/nav'
 import NotFound from './components/notFound'
 import './App.css'
 import {createStore} from 'redux'
-import OnSale from './components/OnSalePage'
+import OnSalePage from './components/OnSalePage'
 
 const App = props => {
   return (
+
     <Fragment>
       <Nav />
       <Switch>
@@ -17,7 +18,7 @@ const App = props => {
 
         <Route exact path="/profile" component={Profile} />
         <Route exact path="/login" component={LoginForm} />
-        <Route exact path="/onsale" components = {OnSale} />
+        <Route exact path="/onsale" components = {OnSalePage} />
         <Route component={NotFound} />
       </Switch>
     </Fragment>

@@ -1,8 +1,7 @@
 
-import PostContainer from './PostContainer.js';
+import SalePostContainer from './SalePostContainer.js';
 import React, {Component, Fragement} from 'react';
 import {connect} from 'react-redux'
-import {incrementAction} from '../action'
 // import SideBar from './SideBar.js';
 // import Header from './Header.js';
 // import Adapter from './Adapter.js'
@@ -17,15 +16,29 @@ componentDidMount() {
 }
 
 fetchFiveRecentPosts = () => {
-  fetch('http://localhost:4000/api/v1/posts').then(res => res.json()).then(res => this.setState({
-    posts: res.posts.slice(Math.max(-5))
+  fetch('http://localhost:4000/api/v1/saleposts').then(res => res.json()).then(res => this.setState({
+    posts: res.saleposts.slice(Math.max(-5))
   }))
 }
 
-// function mapStateToProps(state) {
-//   return {
-//     posts: [],
-//   }
-// }
+
+
+  render() {
+    return (
+      <div className="black">
+        <br />
+        <div className="flex-container">
+          <SalePostContainer posts = {this.state.posts}/>
+        </div>
+      </div>
+    )
+  }
 }
+
+function mapStateToProps(state) {
+  return {
+    posts: [],
+  }
+}
+
 export default connect()(OnSalePage);
