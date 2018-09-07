@@ -1,4 +1,4 @@
-
+import {getPostsAction} from '../action'
 import SalePostContainer from './SalePostContainer.js';
 import React, {Component, Fragement} from 'react';
 import {connect} from 'react-redux'
@@ -8,17 +8,19 @@ import {connect} from 'react-redux'
 class OnSalePage extends Component {
 
 state = {
-  posts: []
+  sale_posts: []
 }
 
 componentDidMount() {
   this.fetchFiveRecentPosts();
 }
 
+// fetchFiveRecentPosts = () => {
+//   fetch('http://localhost:4000/api/v1/sale_posts').then(res => res.json()).then(res => this.setState({
+//     posts: res.saleposts.slice(Math.max(-5))
+//   }))
 fetchFiveRecentPosts = () => {
-  fetch('http://localhost:4000/api/v1/saleposts').then(res => res.json()).then(res => this.setState({
-    posts: res.saleposts.slice(Math.max(-5))
-  }))
+  fetch('http://localhost:4000/api/v1/sale_posts').then(res => res.json()).then(res => this.props.getPostsAction(res.sale_posts.slice(Math.max(-5))))
 }
 
 
@@ -28,7 +30,7 @@ fetchFiveRecentPosts = () => {
       <div className="black">
         <br />
         <div className="flex-container">
-          <SalePostContainer posts = {this.state.posts}/>
+          <SalePostContainer/>
         </div>
       </div>
     )
@@ -37,8 +39,8 @@ fetchFiveRecentPosts = () => {
 
 function mapStateToProps(state) {
   return {
-    posts: [],
+    sale_posts: state.sale_posts
   }
 }
-
-export default connect()(OnSalePage);
+//#this.props.id
+export default connect(mapStateToProps, {getPostsAction})(OnSalePage);

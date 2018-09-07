@@ -5,7 +5,7 @@ import SalePost from './SalePost'
 export default class SalePostContainer extends Component {
 
   renderPosts = () => {
-   return this.props.saleposts.map(salepost => {
+   return this.props.sale_posts.map(salepost => {
      return (
        <SalePost salepost={salepost} key={salepost.id} renderCategories={this.props.renderCategories}/> )}
    )
@@ -18,9 +18,10 @@ export default class SalePostContainer extends Component {
       </div>
     )
   }
-  //
-  // SalePostContainer.defaultProps = {
-  //   posts: [],
-  //   renderCategories: true
-  // }
 }
+  function mapStateToProps(state) {
+    return {
+      posts: state.sale_posts,
+      renderCategories: state.renderCategories
+    }
+  }

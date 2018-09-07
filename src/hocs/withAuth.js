@@ -8,7 +8,8 @@ const withAuth = WrappedComponent => {
   class AuthorizedComponent extends React.Component {
     componentDidMount() {
       // POTENTIAL SECURITY FLAW!!! my tokens don't expire
-      if (localStorage.getItem('jwt') && !this.props.loggedIn) this.props.fetchCurrentUser()
+      if (localStorage.getItem('jwt') && !this.props.loggedIn)
+       this.props.fetchCurrentUser()
     }
 
     render() {
