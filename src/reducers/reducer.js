@@ -5,7 +5,7 @@ const initialState = {
   likes: null,
 };
 
-export default function reducer(state = initialState, action) {
+export default (state = initialState, action) => {
 
 
   switch(action.type) {

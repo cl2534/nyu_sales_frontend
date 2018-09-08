@@ -12,8 +12,9 @@ import reducer from './reducers/reducer'
 import App from './App'
 import usersReducer from './reducers/usersReducer'
 import registerServiceWorker from './registerServiceWorker'
-//
-const rootReducer = combineReducers({ usersReducer })
+import rootReducer from './reducers/index'
+
+
 
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
 

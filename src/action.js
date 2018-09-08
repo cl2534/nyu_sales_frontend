@@ -45,6 +45,6 @@ export function getUserIDAction(id) {
   return { type: 'GET_USER_ID', payload: id}
 }
 
-export function getPostsAction(posts) {
-  return { type: 'GET_POSTS', payload: posts}
+export function getPostsAction(sale_posts) {
+  return { type: 'GET_POSTS', payload: sale_posts}
 }
