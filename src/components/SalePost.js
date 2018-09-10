@@ -81,9 +81,9 @@ class SalePost extends Component{
           <Typography gutterBottom variant="headline" component="h2">
             {this.props.salepost.name}
           </Typography>
-          <div class="meta">
-            <span class="price">$200</span>
-            <span class="category">  {this.generateCategories()} </span>
+          <div className="meta">
+            <span className="price">$200</span>
+            <span className="category">  {this.generateCategories()} </span>
           </div>
           <Typography component="p">
             For Sale
@@ -98,14 +98,14 @@ class SalePost extends Component{
           <ShareIcon />
         </Button>
       </CardActions>
-      <div class="comment-main-level">
-        <div class="comment-box">
-          <div class="comment-head">
-            <h6 class="comment-name by-author"><a href="http://creaticode.com/blog">Agustin Ortiz</a></h6>
-            <i class="fa fa-reply"></i>
-            <i class="fa fa-heart"></i>
+      <div className="comment-main-level">
+        <div className="comment-box">
+          <div className="comment-head">
+            <h6 className="comment-name by-author"><a href="http://creaticode.com/blog">Agustin Ortiz</a></h6>
+            <i className="fa fa-reply"></i>
+            <i className="fa fa-heart"></i>
           </div>
-          <div class="comment-content">
+          <div className="comment-content">
             Cool Comments
           </div>
         </div>

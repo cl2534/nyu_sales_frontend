@@ -19,7 +19,7 @@ componentDidMount() {
 //   }))
 fetchFiveRecentPosts = () => {
   fetch('http://localhost:4000/api/v1/sale_posts').then(res => res.json()).then(res =>
-  this.props.getPostsAction(res.sale_posts))
+  this.props.getPostsAction(res))
 }
 
 // this.props.getPostsAction(res.sale_posts.slice(Math.max(-5))))
@@ -39,7 +39,6 @@ fetchFiveRecentPosts = () => {
 }
 
 function mapStateToProps(state) {
-
   return {
     sale_posts: state.reducer.sale_posts
   }
