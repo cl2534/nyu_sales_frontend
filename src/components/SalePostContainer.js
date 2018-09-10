@@ -25,11 +25,6 @@ const mapStateToProps = (state) => ({
   sale_posts: state.reducer.sale_posts,
   renderCategories: state.reducer.renderCategories
 })
-  // function mapStateToProps(state) {
-  //   return {
-  //     sale_posts: state.sale_posts,
-  //     renderCategories: state.renderCategories
-  //   }
-  // }
+
 
 export default connect(mapStateToProps)(SalePostContainer);

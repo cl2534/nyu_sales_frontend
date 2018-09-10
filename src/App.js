@@ -18,8 +18,8 @@ class App extends Component {
         <Nav/>
         <div className="col-container base-div">
           <div className="top-header-padding"> </div>
-          <Route exact path="/" render={() => <Redirect to="/profile" />} />
-          <Route path="/onSalePage" component={OnSalePage} exact/>
+          <Route exact path="/" render={() => <Redirect to="/login" />} />
+          <Route path="/sales" component={OnSalePage} exact/>
           <Route exact path="/login" component = {loginForm} />
           <Route exact path="/profile" component = {Profile} />
         </div>

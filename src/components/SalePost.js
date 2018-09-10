@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import User from './User';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-
+import Image from 'react-image-resizer'
 export default class SalePost extends Component{
 
   constructor(props) {
@@ -24,20 +24,28 @@ export default class SalePost extends Component{
     }
   }
 
+        // <img src ={this.props.salepost.picture_url}/>
   render() {
     return (
-      <div className = 'salepost'>
-        <div className = 'salepost-inner'>
-          <div className="flex-container">
-            
+
+      <div class="ui items">
+        <div class="item">
+          <div class="ui small image">
+            <img src={this.props.salepost.picture_url}/>
           </div>
-          <div>
-            <div className="salepost-title"> {this.props.salepost.name} </div>
-            <img src ={this.props.salepost.picture_url}/>
-            <br />
+          <div class="content">
+            <div class="header">{this.props.salepost.name}</div>
+            <div class="meta">
+              <span class="price">$200</span>
+            </div>
+            <div class="description">
+              <p>Cute dogs come in a variety of shapes and sizes. Some cute dogs are cute for their adorable faces, others for their tiny stature, and even others for their massive size.</p>
+        <p>Many people also have their own barometers for what makes a cute dog.</p>
+            </div>
           </div>
         </div>
       </div>
+
     )
   }
 }

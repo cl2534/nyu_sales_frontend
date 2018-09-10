@@ -9,6 +9,9 @@ const Nav = ({ user: { loggedIn }, location: { pathname } }) => {
       {loggedIn ? (
         <Fragment>
           <Menu.Item as={NavLink} to="/profile" name="Profile" active={pathname === '/profile'} />
+          <Menu.Item as={NavLink} to = '/sales'name = 'On Sale' active = {pathname ===
+            '/sales'} />
+          <Menu.Item as = {NavLink} to = '/secrets' name = 'NYU Secrets' />
           <Menu.Menu position="right">
             {/* TODO: logout */}
             {/* <Menu.Item to="/logout" name="Logout" onClick={logout} /> */}
