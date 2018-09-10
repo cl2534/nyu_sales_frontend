@@ -1,16 +1,45 @@
 import React, {Component} from 'react';
 import User from './User';
-import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Image from 'react-image-resizer'
-export default class SalePost extends Component{
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import {connect} from 'react-redux'
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import ShareIcon from '@material-ui/icons/Share';
+import CardHeader from '@material-ui/core/CardHeader';
+import Avatar from '@material-ui/core/Avatar';
+import IconButton from '@material-ui/core/IconButton';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import avatar from './avatar'
 
-  constructor(props) {
-    super(props)
+const styles = {
+  card: {
+    maxWidth: 345,
+    padding: 1,
+    display: 'block',
+    margin: '1 2px'
+  },
+  media: { // 16:9
+    objectFit: 'cover',
+
+  },
+  actions: {
+    display: 'flex'
   }
+};
+
+class SalePost extends Component{
+
 
   generateCategories = () => {
-    if (this.props.renderStyles) {
       if (this.props.salepost.sale_categories.length == 0) {
         return null
       }
@@ -21,34 +50,73 @@ export default class SalePost extends Component{
         }
         return <ul className="right-list"> Categories:  {returnArray} </ul>
       }
-    }
   }
-
-        // <img src ={this.props.salepost.picture_url}/>
   render() {
+    const {classes} = this.props;
     return (
 
-      <div class="ui items">
-        <div class="item">
-          <div class="ui small image">
-            <img src={this.props.salepost.picture_url}/>
+    <Card className={classes.card}>
+      <CardHeader
+        avatar={
+          <Avatar aria-label="Recipe" className={classes.avatar}>
+            R
+          </Avatar>
+        }
+        action={
+          <IconButton>
+            <MoreVertIcon />
+          </IconButton>
+        }
+        title="Name"
+        subheader="Location"
+      />
+      <CardActionArea>
+        <CardMedia
+          component="img"
+          className={classes.media}
+          table align = 'center'
+          image= {this.props.salepost.picture_url}
+        />
+        <CardContent>
+          <Typography gutterBottom variant="headline" component="h2">
+            {this.props.salepost.name}
+          </Typography>
+          <div class="meta">
+            <span class="price">$200</span>
+            <span class="category">  {this.generateCategories()} </span>
           </div>
-          <div class="content">
-            <div class="header">{this.props.salepost.name}</div>
-            <div class="meta">
-              <span class="price">$200</span>
-            </div>
-            <div class="description">
-              <p>Cute dogs come in a variety of shapes and sizes. Some cute dogs are cute for their adorable faces, others for their tiny stature, and even others for their massive size.</p>
-        <p>Many people also have their own barometers for what makes a cute dog.</p>
-            </div>
+          <Typography component="p">
+            For Sale
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+      <CardActions>
+        <Button size="small" color="primary">
+          <FavoriteIcon />
+        </Button>
+        <Button size="small" color="primary">
+          <ShareIcon />
+        </Button>
+      </CardActions>
+      <div class="comment-main-level">
+        <div class="comment-box">
+          <div class="comment-head">
+            <h6 class="comment-name by-author"><a href="http://creaticode.com/blog">Agustin Ortiz</a></h6>
+            <i class="fa fa-reply"></i>
+            <i class="fa fa-heart"></i>
+          </div>
+          <div class="comment-content">
+            Cool Comments
           </div>
         </div>
       </div>
+    </Card>
 
-    )
+  );
   }
 }
+
+export default connect()(withStyles(styles)(SalePost));
 
 // function mapStateToProps(state) {
 //   return {

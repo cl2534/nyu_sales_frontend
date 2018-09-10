@@ -13,6 +13,8 @@ export function LikeButtonAction(id, likes) {
      })
    }
  }
+
+ 
 // handleLikeClick = () => {
 //   fetch('https://young-waters-32129.herokuapp.com/api/v1/posts/' + this.props.post.id, {
 //     method: 'PATCH',

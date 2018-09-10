@@ -3,6 +3,7 @@ const initialState = {
   sale_posts: [],
   renderCategories: true,
   likes: null,
+  avatarID: 1
 };
 
 export default (state = initialState, action) => {
@@ -13,7 +14,10 @@ export default (state = initialState, action) => {
       return {...state, loggedInUserID: action.payload}
     case 'GET_POSTS':
       return {...state, sale_posts: action.payload}
+    case 'FETCH_USER':
+      return {...state, avatarID: action.payload}
     default:
       return state;
+
   }
 }
