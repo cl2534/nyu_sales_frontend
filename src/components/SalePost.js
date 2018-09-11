@@ -12,6 +12,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import {connect} from 'react-redux'
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import CommentIcon from '@material-ui/icons/Comment'
 import ShareIcon from '@material-ui/icons/Share';
 import CardHeader from '@material-ui/core/CardHeader';
 import Avatar from '@material-ui/core/Avatar';
@@ -24,6 +25,9 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Comments from './comment'
+import TextField from '@material-ui/core/TextField';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import AccountCircle from '@material-ui/icons/AccountCircle';
 
 const styles = (theme) => ({
   card: {
@@ -62,6 +66,10 @@ class SalePost extends Component{
         }
         return <ul className="right-list"> Categories:  {returnArray} </ul>
       }
+  }
+
+  handleComment = () => {
+    
   }
 
   generateComments = () => {
@@ -103,7 +111,7 @@ class SalePost extends Component{
           <FavoriteIcon />
         </Button>
         <Button size="small" color="primary">
-          <ShareIcon />
+          <CommentIcon />
         </Button>
       </CardActions>
       <div className="comment-main-level">
@@ -111,15 +119,30 @@ class SalePost extends Component{
           {this.generateComments()}
         </div>
       </div>
+      <TextField
+        className={classes.margin}
+        id="input-with-icon-textfield"
+        label="TextField"
+        onChange = {this.handleComment()}
 
-
+        InputProps={{
+          startAdornment: (
+      <InputAdornment position="start">
+        <AccountCircle />
+      </InputAdornment>)}}/>
     </Card>
-
   );
   }
 }
+function mapStateToProps(state) {
+  return {
+    loggedInUserID: state.reducer.loggedInUserID
+  }
+}
+export default connect(mapStateToProps)(withStyles(styles)(SalePost));
 
-export default connect()(withStyles(styles)(SalePost));
+
+//#this.props.id
 
 // function mapStateToProps(state) {
 //   return {

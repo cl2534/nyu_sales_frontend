@@ -14,7 +14,14 @@ export function LikeButtonAction(id, likes) {
    }
  }
 
- 
+export function addComment(user_id, comment) {
+  return (dispatch) => {
+    fetch('http://localhost:4000/api/v1/sale_posts')
+  }
+}
+
+
+
 // handleLikeClick = () => {
 //   fetch('https://young-waters-32129.herokuapp.com/api/v1/posts/' + this.props.post.id, {
 //     method: 'PATCH',
@@ -31,16 +38,8 @@ function LikeClick (likes) {
   return {type: 'INCREMENT_LIKE', payload: likes}
 }
 
-export function incrementAction() {
-  return { type: 'INCREMENT' };
-}
-
-export function incrementCountererAction() {
-  return { type: 'INCREMENT_OTHER_COUNTER' };
-}
-
-export function setAction(value) {
-  return { type: 'SET_COUNTER', payload: value };
+function addCommentAction(comment) {
+  return {type: 'ADD_COMMENT', payload: comment}
 }
 
 export function getUserIDAction(id) {
