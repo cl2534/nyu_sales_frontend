@@ -8,15 +8,26 @@ export function LikeButtonAction(id, likes) {
       body: JSON.stringify({likes: likes + 1})
     }).then(res => res.json()).then(json => {
         console.log(json)
-        debugger;
+
        dispatch(LikeClick(json.likes))
      })
    }
  }
 
-export function addComment(user_id, comment) {
+export function addComment(user_id, sale_post_id, comment) {
   return (dispatch) => {
-    fetch('http://localhost:4000/api/v1/sale_posts')
+    fetch(`http://localhost:4000/api/v1/comments/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        comment: comment,
+        user_id: user_id,
+        sale_post_id: sale_post_id
+      })
+    }).then(res => res.json())
+    .then(res => dispatch(addCommentAction(json.comment)))
   }
 }
 
