@@ -1,14 +1,7 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import Typography from '@material-ui/core/Typography';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { Comment, Icon } from 'semantic-ui-react'
 
-
-export default class Comment extends Component {
+export default class comment extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -31,17 +24,17 @@ export default class Comment extends Component {
 
   render () {
     return (
-    <div className={this.props.root}>
-      <ExpansionPanel>
-        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography className={this.props.heading}>Comment from {this.state.currentUser.name}</Typography>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
-            <Typography>
+      <Comment.Group>
+        <Comment>
+          <Comment.Avatar as='a' src='https://react.semantic-ui.com/images/avatar/small/stevie.jpg' />
+          <Comment.Content>
+            <Comment.Author>{this.state.currentUser.name}</Comment.Author>
+            <Comment.Text>
               {this.props.comment}
-            </Typography>
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
-      </div>
-    )}
+            </Comment.Text>
+          </Comment.Content>
+        </Comment>
+      </Comment.Group>
+    )
+  }
 }
