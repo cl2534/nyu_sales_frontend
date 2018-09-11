@@ -10,7 +10,6 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 import {connect} from 'react-redux'
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
@@ -19,8 +18,14 @@ import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import UserBlurb from './UserBlurb'
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Comments from './comment'
 
-const styles = {
+const styles = (theme) => ({
   card: {
     maxWidth: 345,
     padding: 1,
@@ -33,8 +38,15 @@ const styles = {
   },
   actions: {
     display: 'flex'
+  },
+  root: {
+    width: '100%'
+  },
+  heading: {
+    fontSize: theme.typography.pxToRem(15),
+    fontWeight: theme.typography.fontWeightRegular,
   }
-};
+});
 
 class SalePost extends Component{
 
@@ -50,6 +62,15 @@ class SalePost extends Component{
         }
         return <ul className="right-list"> Categories:  {returnArray} </ul>
       }
+  }
+
+  generateComments = () => {
+    const {classes} = this.props
+    return this.props.salepost.comments.map(comment => {
+      return (
+        <Comments heading = {classes.heading} root = {classes.root} userID = {comment.user_id} comment = {comment.comment} />
+      )
+    })
   }
   render() {
     const {classes} = this.props;
@@ -87,16 +108,11 @@ class SalePost extends Component{
       </CardActions>
       <div className="comment-main-level">
         <div className="comment-box">
-          <div className="comment-head">
-            <h6 className="comment-name by-author"><a href="http://creaticode.com/blog">Agustin Ortiz</a></h6>
-            <i className="fa fa-reply"></i>
-            <i className="fa fa-heart"></i>
-          </div>
-          <div className="comment-content">
-            Cool Comments
-          </div>
+          {this.generateComments()}
         </div>
       </div>
+
+
     </Card>
 
   );

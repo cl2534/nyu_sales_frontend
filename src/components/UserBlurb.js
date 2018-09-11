@@ -8,11 +8,6 @@ import Card from '@material-ui/core/Card';
 
 export default class UserBlurb extends Component{
   // state = {}
-  constructor(props) {
-    super(props)
-  }
-
-
   render() {
     return (
       <CardHeader
