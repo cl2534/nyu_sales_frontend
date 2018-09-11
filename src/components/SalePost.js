@@ -69,7 +69,7 @@ class SalePost extends Component{
   }
 
   handleComment = () => {
-    
+
   }
 
   generateComments = () => {
@@ -98,7 +98,7 @@ class SalePost extends Component{
             {this.props.salepost.name}
           </Typography>
           <div className="meta">
-            <span className="price">$200</span>
+            <span className="price">{this.props.salepost.price}</span>
             <span className="category">  {this.generateCategories()} </span>
           </div>
           <Typography component="p">
