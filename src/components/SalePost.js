@@ -18,7 +18,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-import avatar from './avatar'
+import UserBlurb from './UserBlurb'
 
 const styles = {
   card: {
@@ -56,20 +56,7 @@ class SalePost extends Component{
     return (
 
     <Card className={classes.card}>
-      <CardHeader
-        avatar={
-          <Avatar aria-label="Recipe" className={classes.avatar}>
-            R
-          </Avatar>
-        }
-        action={
-          <IconButton>
-            <MoreVertIcon />
-          </IconButton>
-        }
-        title="Name"
-        subheader="Location"
-      />
+      <UserBlurb postuser = {this.props.salepost.user} avatar = {classes.avatar}/>
       <CardActionArea>
         <CardMedia
           component="img"

@@ -31,7 +31,6 @@ fetchFiveRecentPosts = () => {
         <br />
         <div className="flex-container">
           <SalePostContainer/>
-          {console.log("SALE POSTS", this.props.sale_posts)}
         </div>
       </div>
     )
