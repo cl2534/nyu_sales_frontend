@@ -4,10 +4,15 @@ import CardHeader from '@material-ui/core/CardHeader';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import ClearIcon from '@material-ui/icons/Clear'
 import Card from '@material-ui/core/Card';
 
 export default class UserBlurb extends Component{
   // state = {}
+
+  handleDelete = (event) => {
+    console.log(this.props.postID)
+  }
   render() {
     return (
       <CardHeader
@@ -18,7 +23,7 @@ export default class UserBlurb extends Component{
         }
         action={
           <IconButton>
-            <MoreVertIcon />
+            <ClearIcon onClick = {this.handleDelete}/>
           </IconButton>
         }
         title={this.props.postuser.name}

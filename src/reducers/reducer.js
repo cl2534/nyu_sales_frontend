@@ -4,7 +4,7 @@ const initialState = {
   renderCategories: true,
   likes: null,
   avatarID: 1,
-  comment: ''
+  comments: ''
 };
 
 export default (state = initialState, action) => {
@@ -18,7 +18,9 @@ export default (state = initialState, action) => {
     case 'FETCH_USER':
       return {...state, avatarID: action.payload}
     case 'ADD_COMMENT':
-      return {...state, comment: action.payload}
+      return {...state, comments: action.payload}
+    case 'ADD_LIKES':
+      return {...state, likes: action.payload}
     default:
       return state;
 

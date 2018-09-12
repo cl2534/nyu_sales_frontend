@@ -11,10 +11,10 @@ const Nav = ({ user: { loggedIn }, location: { pathname } }) => {
           <Menu.Item as={NavLink} to="/profile" name="Profile" active={pathname === '/profile'} />
           <Menu.Item as={NavLink} to = '/sales'name = 'On Sale' active = {pathname ===
             '/sales'} />
-          <Menu.Item as = {NavLink} to = '/secrets' name = 'NYU Secrets' />
+          <Menu.Item as = {NavLink} to = '/new-post' name = 'Make a Post' active = {pathname === '/new-post'} />
           <Menu.Menu position="right">
             {/* TODO: logout */}
-            {/* <Menu.Item to="/logout" name="Logout" onClick={logout} /> */}
+            <Menu.Item as = {NavLink} to="/logout" name="Logout" active = {pathname === '/login'}  />
           </Menu.Menu>
         </Fragment>
       ) : (

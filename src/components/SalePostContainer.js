@@ -1,7 +1,7 @@
 import React, {Component, Fragement} from 'react';
 import {connect} from 'react-redux'
 import SalePost from './SalePost'
-
+import Grid from '@material-ui/core/Grid'
 class SalePostContainer extends Component {
 
   renderPosts = () => {
@@ -15,9 +15,9 @@ class SalePostContainer extends Component {
 
   render() {
     return (
-      <div className = 'post-container column'>
+        <Grid container justify="space-evenly" direction="row" alignItems = "flex-start" >
         {this.renderPosts()}
-      </div>
+        </Grid>
     )
   }
 }

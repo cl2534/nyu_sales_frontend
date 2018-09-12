@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import { Comment, Icon } from 'semantic-ui-react'
+import AccountCircle from '@material-ui/icons/AccountCircle';
+
 
 export default class comment extends Component {
   constructor(props) {
@@ -24,9 +26,9 @@ export default class comment extends Component {
 
   render () {
     return (
-      <Comment.Group>
         <Comment>
-          <Comment.Avatar as='a' src='https://react.semantic-ui.com/images/avatar/small/stevie.jpg' />
+          <br />
+          <AccountCircle/>
           <Comment.Content>
             <Comment.Author>{this.state.currentUser.name}</Comment.Author>
             <Comment.Text>
@@ -34,7 +36,6 @@ export default class comment extends Component {
             </Comment.Text>
           </Comment.Content>
         </Comment>
-      </Comment.Group>
     )
   }
 }

@@ -1,17 +1,32 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Card, Image } from 'semantic-ui-react'
+import { Card, Image, Icon } from 'semantic-ui-react'
 import withAuth from '../hocs/withAuth'
 
-const Profile = ({ name, location }) => {
+const Profile = ({ name, location, picture_url, email }) => {
 // const Profile = (props) => {
 //   console.log(props);
+
   return (
+
     <Card>
+      <Image
+         src= {picture_url}
+         height={ 300 }
+         width={ 300 }
+       />
       <Card.Content>
         <Card.Header>{name}</Card.Header>
-
-        <Card.Description>{location}</Card.Description>
+        <Card.Meta>
+          <span className = 'location'> {location} </span>
+        </Card.Meta>
+        <Card.Description> Contact Info: {email} </Card.Description>
+          <Card.Content extra>
+            <a>
+              <Icon name='user' />
+              22 Friends
+            </a>
+          </Card.Content>
       </Card.Content>
     </Card>
   )
@@ -19,9 +34,11 @@ const Profile = ({ name, location }) => {
 
 
 // instead of state.usersReducer.user.username, state.usersReducer.user.avatar
-const mapStateToProps = ({ usersReducer: { user: { name, location } } }) => ({
+const mapStateToProps = ({ usersReducer: { user: { name, location, picture_url, email } } }) => ({
   name,
-  location
+  location,
+  picture_url,
+  email
 })
 
 // const mapStateToProps = (state) => {

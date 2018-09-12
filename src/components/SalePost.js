@@ -28,6 +28,7 @@ import Comments from './comment'
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import AccountCircle from '@material-ui/icons/AccountCircle';
+import Grid from '@material-ui/core/Grid'
 
 const styles = (theme) => ({
   card: {
@@ -54,8 +55,14 @@ const styles = (theme) => ({
 
 class SalePost extends Component{
 
+  state = {
+    comment:'',
+    sale_post_id: this.props.salepost.id,
+    user_id: this.props.loggedInUserID
+  }
 
   generateCategories = () => {
+
       if (this.props.salepost.sale_categories.length == 0) {
         return null
       }
@@ -67,42 +74,61 @@ class SalePost extends Component{
         return <ul className="right-list"> Categories:  {returnArray} </ul>
       }
   }
+  // t.text "comment"
+  //     t.bigint "user_id"
+  //     t.bigint "sale_post_id" //this.props.comments and loggedInUserID
+  handleComment = (event) => {
+    this.setState({
+      comment : event.target.value
+    })
+  }
 
-  handleComment = () => {
-
+  handleSubmit = (event) => {
+    fetch('http://localhost:4000/api/v1/comments', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({...this.state})
+    }).then(res => res.json()).then(json => console.log(json))
   }
 
   generateComments = () => {
     const {classes} = this.props
     return this.props.salepost.comments.map(comment => {
       return (
-        <Comments heading = {classes.heading} root = {classes.root} userID = {comment.user_id} comment = {comment.comment} />
+        <Comments heading = {classes.heading} root = {classes.root} userID = {comment.user_id} comment = {comment.comment}/>
       )
     })
   }
   render() {
     const {classes} = this.props;
     return (
-
+      <Grid item style = {{margin: "auto 8px"}}>
     <Card className={classes.card}>
-      <UserBlurb postuser = {this.props.salepost.user} avatar = {classes.avatar}/>
+      <UserBlurb postuser = {this.props.salepost.user} avatar = {classes.avatar} postID = {this.props.salepost.id}/>
       <CardActionArea>
         <CardMedia
           component="img"
           className={classes.media}
           table align = 'center'
-          image= {this.props.salepost.picture_url}
         />
+        <Image
+           src= {this.props.salepost.picture_url}
+           height={ 300 }
+           width={ 300 }
+         />
         <CardContent>
           <Typography gutterBottom variant="headline" component="h2">
             {this.props.salepost.name}
           </Typography>
           <div className="meta">
-            <span className="price">{this.props.salepost.price}</span>
-            <span className="category">  {this.generateCategories()} </span>
+            <span className="price"> {this.props.salepost.price}</span>
+            <br />
+            <span className="category">  </span>
           </div>
           <Typography component="p">
-            For Sale
+            {this.generateCategories()}
           </Typography>
         </CardContent>
       </CardActionArea>
@@ -119,24 +145,29 @@ class SalePost extends Component{
           {this.generateComments()}
         </div>
       </div>
+      <form onSubmit={this.handleSubmit}>
       <TextField
         className={classes.margin}
         id="input-with-icon-textfield"
         label="TextField"
-        onChange = {this.handleComment()}
-
+        value = {this.state.comments}
+        onChange = {this.handleComment}
         InputProps={{
           startAdornment: (
       <InputAdornment position="start">
         <AccountCircle />
       </InputAdornment>)}}/>
+    </form>
     </Card>
+    </Grid>
   );
   }
 }
 function mapStateToProps(state) {
   return {
-    loggedInUserID: state.reducer.loggedInUserID
+    loggedInUserID: state.reducer.loggedInUserID,
+    comments: state.reducer.comments,
+    likes: state.reducer.likes
   }
 }
 export default connect(mapStateToProps)(withStyles(styles)(SalePost));

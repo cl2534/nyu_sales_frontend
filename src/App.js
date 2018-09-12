@@ -9,7 +9,7 @@ import {createStore} from 'redux'
 import OnSalePage from './components/OnSalePage'
 import { BrowserRouter} from 'react-router-dom';
 import { Component } from 'react';
-
+import NewPost from './components/NewPost'
 
 class App extends Component {
   render() {
@@ -22,6 +22,7 @@ class App extends Component {
           <Route path="/sales" component={OnSalePage} exact/>
           <Route exact path="/login" component = {loginForm} />
           <Route exact path="/profile" component = {Profile} />
+          <Route exact path = '/new-post' component = {NewPost}/>
         </div>
       </div>
 
