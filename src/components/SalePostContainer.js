@@ -1,4 +1,4 @@
-import React, {Component, Fragement} from 'react';
+import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import SalePost from './SalePost'
 import Grid from '@material-ui/core/Grid'

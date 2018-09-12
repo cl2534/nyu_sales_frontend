@@ -9,10 +9,17 @@ import Card from '@material-ui/core/Card';
 
 export default class UserBlurb extends Component{
   // state = {}
-
-  handleDelete = (event) => {
-    console.log(this.props.postID)
+  constructor(props) {
+    super(props)
   }
+  handleDelete = (event) => {
+    event.preventDefault()
+    fetch(`http://localhost:4000/api/v1/sale_posts/` + this.props.postID, {
+      method: 'DELETE',
+    }).then(res => res.json())
+    }
+
+
   render() {
     return (
       <CardHeader

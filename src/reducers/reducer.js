@@ -4,7 +4,8 @@ const initialState = {
   renderCategories: true,
   likes: null,
   avatarID: 1,
-  comments: ''
+  comments: '',
+  sale_categories: []
 };
 
 export default (state = initialState, action) => {
@@ -21,6 +22,8 @@ export default (state = initialState, action) => {
       return {...state, comments: action.payload}
     case 'ADD_LIKES':
       return {...state, likes: action.payload}
+    case 'GET_CATEGORIES':
+      return {...state, sale_categories: action.payload}
     default:
       return state;
 

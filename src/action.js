@@ -60,3 +60,7 @@ export function getUserIDAction(id) {
 export function getPostsAction(sale_posts) {
   return { type: 'GET_POSTS', payload: sale_posts}
 }
+
+export function getCategoryAction(sale_categories) {
+  return { type: 'GET_CATEGORIES', payload: sale_categories}
+}
