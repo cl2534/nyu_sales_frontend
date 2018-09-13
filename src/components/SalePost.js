@@ -89,6 +89,7 @@ class SalePost extends Component{
   }
 
   generateComments = () => {
+
     const {classes} = this.props
     if (!this.props.salepost.comments) {
       return null;
@@ -101,18 +102,28 @@ class SalePost extends Component{
     }
   }
 
-  generateAvatar=(classes)=> {
-    return (
-      <UserBlurb postuser = {this.props.salepost.user} avatar = {classes.avatar} postID = {this.props.salepost.id}/>
-    )
+  renderAvatar = () => {
+    
+      const {classes} = this.props;
+      if (this.props.renderCategories) {
+        return (
+          <UserBlurb postuser = {this.props.salepost.user} avatar = {classes.avatar} postID = {this.props.salepost.id}/>
+        )
+      } else {
+        return (
+          <UserBlurb postuserID = {this.props.salepost.user_id} avatar = {classes.avatar} postID = {this.props.salepost.id} />
+        )
+      }
   }
 
   render() {
+
     const {classes} = this.props;
+    console.log(this.props.salepost)
     return (
       <Grid item style = {{margin: "auto 8px"}}>
     <Card className={classes.card}>
-
+    {this.renderAvatar()}
       <CardActionArea>
         <CardMedia
           component="img"
