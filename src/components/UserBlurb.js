@@ -44,25 +44,7 @@ class UserBlurb extends Component{
   }
 
   renderAvatar = () => {
-    debugger
-    if (!this.props.renderCategories) {
-      return (
-        <CardHeader
-          avatar={
-            <Avatar aria-label={this.state.currentUserInstance.name} className={this.props.avatar}>
-              {this.state.currentUserInstance.name.charAt(0).toUpperCase()}
-            </Avatar>
-          }
-          action={
-            <IconButton>
-              <ClearIcon onClick = {this.handleDelete}/>
-            </IconButton>
-          }
-          title={this.state.currentUserInstance.name}
-          subheader={this.state.currentUserInstance.location}
-        />
-      )
-    } else {
+    if (this.props.renderCategories) {
       return (
         <CardHeader
           avatar={
@@ -77,6 +59,23 @@ class UserBlurb extends Component{
           }
           title={this.props.postuser.name}
           subheader={this.props.postuser.location}
+        />
+      )
+    } else if (this.state.currentUserInstance) {
+      return (
+        <CardHeader
+          avatar={
+            <Avatar aria-label={this.state.currentUserInstance.name} className={this.props.avatar}>
+              {this.state.currentUserInstance.name.charAt(0).toUpperCase()}
+            </Avatar>
+          }
+          action={
+            <IconButton>
+              <ClearIcon onClick = {this.handleDelete}/>
+            </IconButton>
+          }
+          title={this.state.currentUserInstance.name}
+          subheader={this.state.currentUserInstance.location}
         />
       )
     }
