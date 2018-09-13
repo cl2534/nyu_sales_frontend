@@ -11,3 +11,11 @@ body {
 div {
   background-color: #ffffff;
 }
+
+.center-text {
+  position: absolute;
+  color: black;
+  top: 50%;
+  left: 40%;
+  background: transparent;
+}
