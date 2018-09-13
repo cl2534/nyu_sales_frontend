@@ -30,7 +30,7 @@ fetchFiveRecentPosts = () => {
       <div className="black">
         <br />
         <div className="flex-container">
-          <SalePostContainer/>
+          <SalePostContainer renderCategories = {this.props.renderCategories}/>
         </div>
       </div>
     )
@@ -39,7 +39,8 @@ fetchFiveRecentPosts = () => {
 
 function mapStateToProps(state) {
   return {
-    sale_posts: state.reducer.sale_posts
+    sale_posts: state.reducer.sale_posts,
+    renderCategories: state.reducer.renderCategories
   }
 }
 //#this.props.id

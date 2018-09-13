@@ -62,19 +62,13 @@ class SalePost extends Component{
   }
 
   generateCategories = () => {
-    if (this.props.renderCategories) {
-      if (this.props.salepost.sale_categories.length == 0) {
-        return null
-      }
-      else {
         let returnArray = []
         for (let category in this.props.salepost.sale_categories) {
           returnArray.push(<Link className="style-text" to={"/sale_categories/" + this.props.salepost.sale_categories[category].id}> <li>   {this.props.salepost.sale_categories[category].name} </li> </Link>)
         }
         return <ul className="right-list"> Categories:  {returnArray} </ul>
-      }
-    }
   }
+
   // t.text "comment"
   //     t.bigint "user_id"
   //     t.bigint "sale_post_id" //this.props.comments and loggedInUserID
@@ -96,18 +90,29 @@ class SalePost extends Component{
 
   generateComments = () => {
     const {classes} = this.props
+    if (!this.props.salepost.comments) {
+      return null;
+    } else {
     return this.props.salepost.comments.map(comment => {
       return (
         <Comments heading = {classes.heading} root = {classes.root} userID = {comment.user_id} comment = {comment.comment}/>
       )
     })
+    }
   }
+
+  generateAvatar=(classes)=> {
+    return (
+      <UserBlurb postuser = {this.props.salepost.user} avatar = {classes.avatar} postID = {this.props.salepost.id}/>
+    )
+  }
+
   render() {
     const {classes} = this.props;
     return (
       <Grid item style = {{margin: "auto 8px"}}>
     <Card className={classes.card}>
-      <UserBlurb postuser = {this.props.salepost.user} avatar = {classes.avatar} postID = {this.props.salepost.id}/>
+
       <CardActionArea>
         <CardMedia
           component="img"

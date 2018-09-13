@@ -5,13 +5,21 @@ import Grid from '@material-ui/core/Grid'
 class SalePostContainer extends Component {
 
   renderPosts = () => {
-    if (this.props.saleposts) {
-   return this.props.saleposts.map(salepost => {
-     return (
-       <SalePost salepost={salepost} key={salepost.id} renderCategories={this.props.renderCategories}/> )}
-   )
- }
-}
+
+    if (!!this.props.renderCategories) {
+      return this.props.saleposts.map(salepost => {
+        return (
+          <SalePost salepost={salepost} key={salepost.id} renderCategories={this.props.renderCategories}/>
+        )}
+      )
+    } else {
+      return this.props.categoryposts.map(salepost => {
+        return (
+          <SalePost salepost={salepost} key={salepost.id} renderCategories={this.props.renderCategories}/>
+        )}
+      )
+    }
+  }
 
   render() {
     return (
@@ -23,11 +31,7 @@ class SalePostContainer extends Component {
 }
 const mapStateToProps = (state) => ({
   saleposts: state.reducer.sale_posts,
-  renderCategories: state.reducer.renderCategories
 })
 
-SalePostContainer.defaultProps = {
-  saleposts: [],
-  renderCategories: true
-}
+
 export default connect(mapStateToProps)(SalePostContainer);

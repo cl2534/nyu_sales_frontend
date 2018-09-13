@@ -16,17 +16,6 @@ export default class CategoryPage extends Component {
     this.setStyle()
   }
 
-//fetches style/post join table information from the backend to display. takes in a style id and outputs
-//an array of posts associated with the style
-  fetchCategory = (categoryId) => {
-    fetch(`http://localhost:4000/api/v1/sale_categories/` + this.state.currentCategory.id)
-    .then(res => res.json())
-    .then(json => {
-      this.setState({
-        categoryPosts: json.sale_posts
-      })
-    })
-  }
 
 //fetches style information and sets the state to it.
   setStyle = () => {
@@ -37,23 +26,25 @@ export default class CategoryPage extends Component {
     fetch('http://localhost:4000/api/v1/sale_categories/' + id)
     .then(res => res.json())
     .then(json => this.setState({
-      currentCategory: json
+      currentCategory: json.sale_category,
+      categoryPosts: json.sale_category.sale_posts
     }))
   }
 }
 
   renderPosts = () => {
+
     if (this.state.categoryPosts.length == 0) {
       return <h2> Sorry, this category does not have any posts associated with it yet! </h2>
     }
     else {
-      return <SalePostContainer saleposts={this.state.categoryPosts} renderCategories={false} />
+      return <SalePostContainer categoryposts={this.state.categoryPosts} renderCategories={false} />
     }
   }
 
 
   render() {
-
+    console.log(this.state)
     return (
       <div>
 
