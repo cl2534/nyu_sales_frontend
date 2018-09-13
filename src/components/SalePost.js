@@ -103,15 +103,11 @@ class SalePost extends Component{
   }
 
   renderAvatar = () => {
-    
+
       const {classes} = this.props;
       if (this.props.renderCategories) {
         return (
-          <UserBlurb postuser = {this.props.salepost.user} avatar = {classes.avatar} postID = {this.props.salepost.id}/>
-        )
-      } else {
-        return (
-          <UserBlurb postuserID = {this.props.salepost.user_id} avatar = {classes.avatar} postID = {this.props.salepost.id} />
+          <UserBlurb postuser = {this.props.salepost.user} avatar = {classes.avatar} postID = {this.props.salepost.id} renderPosts = {true}/>
         )
       }
   }
@@ -119,7 +115,6 @@ class SalePost extends Component{
   render() {
 
     const {classes} = this.props;
-    console.log(this.props.salepost)
     return (
       <Grid item style = {{margin: "auto 8px"}}>
     <Card className={classes.card}>

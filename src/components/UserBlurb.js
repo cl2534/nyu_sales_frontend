@@ -13,13 +13,15 @@ class UserBlurb extends Component{
   constructor(props) {
     super(props)
     this.state = {
-      currnetUserInstance: {}
+      currentUserInstance: {}
     }
   }
 
+
   componentDidMount() {
-    if (!this.props.renderCategories)
-    this.fetchUser(this.props.postuserID);
+    if (!this.props.renderPosts) {
+      this.fetchUser(this.props.postuserID);
+    }
   }
 
 
@@ -44,7 +46,7 @@ class UserBlurb extends Component{
   }
 
   renderAvatar = () => {
-    if (this.props.renderCategories) {
+    if (!!this.props.renderPosts) {
       return (
         <CardHeader
           avatar={
@@ -61,7 +63,8 @@ class UserBlurb extends Component{
           subheader={this.props.postuser.location}
         />
       )
-    } else if (this.state.currentUserInstance) {
+    } else if (this.state.currentUserInstance){
+      console.log(this.state.currentUserInstance)
       return (
         <CardHeader
           avatar={
@@ -78,11 +81,28 @@ class UserBlurb extends Component{
           subheader={this.state.currentUserInstance.location}
         />
       )
+    } else {
+      return (
+        <CardHeader
+          avatar={
+            <Avatar aria-label={this.props.postuser.name} className={this.props.avatar}>
+              {this.props.postuser.name.charAt(0).toUpperCase()}
+            </Avatar>
+          }
+          action={
+            <IconButton>
+              <ClearIcon onClick = {this.handleDelete}/>
+            </IconButton>
+          }
+          title={this.props.postuser.name}
+          subheader={this.props.postuser.location}
+        />
+      )
     }
   }
 
   render() {
-    console.log(this.state.currentUserInstance)
+
     return (
       <div>
         {this.renderAvatar()}
