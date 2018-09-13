@@ -8,12 +8,38 @@ export default class Box extends Component {
   constructor(props) {
     super(props)
   }
+//
+//   state = {
+//     clickedBoxes = []
+//   }
+//
+// true = () => {
+//     if (clickedBoxes) {
+//     return (
+//       <CategoryPage></CategoryPage>
+//     )
+//   }
+// }
+//
+// sandyHandleClick = (box) => {
+//   this.setState({
+//     clickedBoxes: [...state.clickedBoxes, box]
+//   })
+// }
+//
+//   handleClick = () => {
+//     return(
+//       <CategoryPage categoryId = {categoryId}/>
+//     )
+//   }
+// if object is clicked pass down to category
+
 
   render() {
-
+    console.log(this.props.salecategory.sale_posts)
     return (
       <Card>
-      <Link to={"/sale-category/" + this.props.salecategory.id} >
+      <Link to={"/categorypage?id=" + this.props.salecategory.id}>
         <Image
            src= {this.props.salecategory.picture_url}
            height={ 300 }

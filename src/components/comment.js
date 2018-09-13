@@ -18,9 +18,9 @@ export default class comment extends Component {
   findUser = (user_id) => {
     fetch(`http://localhost:4000/api/v1/users/` + user_id)
     .then(res => res.json())
-    .then(res => {console.log(res); this.setState({
+    .then(res => this.setState({
       currentUser: res.user
-    })})
+    }))
   }
 
 

@@ -3,7 +3,7 @@
 import {connect} from 'react-redux'
 import React, {Component} from 'react';
 import CategoryBox from './CategoryBox.js';
-
+import CategoryPage from './CategoryPage'
 import Grid from '@material-ui/core/Grid'
 
 export default class CategoryContainer extends Component {
@@ -22,15 +22,15 @@ export default class CategoryContainer extends Component {
 
     return this.props.salecategories.map(salecategory => {
       return (
-        <CategoryBox key = {salecategory.id} id = {salecategory.id} salecategory = {salecategory} />
+        <CategoryBox key = {salecategory.id} id = {salecategory.id} salecategory = {salecategory} categoryPosts = {salecategory.sale_posts}/>
       )
     })
   }
 
-  handleClick = (category_id) => {
-    // return(
-    //   <StylePage styleId = {style_id} />
-    // )
+  handleClick = (categoryId) => {
+    return(
+      <CategoryPage categoryId = {categoryId}/>
+    )
   }
   generateBoxes = () => {
   if (this.props.salecategories == []) {

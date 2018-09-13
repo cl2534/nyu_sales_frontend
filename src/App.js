@@ -11,6 +11,7 @@ import { BrowserRouter} from 'react-router-dom';
 import { Component } from 'react';
 import NewPost from './components/NewPost'
 import SaleCategory from './components/SaleCategory'
+import CategoryPage from './components/CategoryPage'
 class App extends Component {
   render() {
     return (
@@ -24,7 +25,7 @@ class App extends Component {
           <Route exact path="/profile" component = {Profile} />
           <Route exact path = '/sale-category' component = {SaleCategory}/>
           <Route exact path = '/new-post' component = {NewPost}/>
-
+          <Route exact path = '/categorypage' component = {CategoryPage} />
 
           <Route exact path="/logout" component = {loginForm} />
         </div>

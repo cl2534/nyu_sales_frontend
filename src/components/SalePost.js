@@ -62,7 +62,7 @@ class SalePost extends Component{
   }
 
   generateCategories = () => {
-
+    if (this.props.renderCategories) {
       if (this.props.salepost.sale_categories.length == 0) {
         return null
       }
@@ -73,6 +73,7 @@ class SalePost extends Component{
         }
         return <ul className="right-list"> Categories:  {returnArray} </ul>
       }
+    }
   }
   // t.text "comment"
   //     t.bigint "user_id"

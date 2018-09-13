@@ -19,7 +19,6 @@ export default class SaleCategory extends Component {
 
 
   render() {
-    console.log(this.state.salecategories)
     return (
       <div className="black">
           <CategoryContainer salecategories={this.state.salecategories}/>
