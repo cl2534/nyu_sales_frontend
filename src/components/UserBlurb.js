@@ -6,19 +6,25 @@ import IconButton from '@material-ui/core/IconButton';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import ClearIcon from '@material-ui/icons/Clear'
 import Card from '@material-ui/core/Card';
-
-export default class UserBlurb extends Component{
+import * as actions from '../actions'
+import {connect} from 'react-redux'
+class UserBlurb extends Component{
   // state = {}
   constructor(props) {
     super(props)
   }
   handleDelete = (event) => {
-    event.preventDefault()
+
     fetch(`http://localhost:4000/api/v1/sale_posts/` + this.props.postID, {
       method: 'DELETE',
-    }).then(res => res.json())
-    }
+    }).then(res => this.fetchAllPosts())
+  }
 
+  fetchAllPosts = () => {
+    fetch('http://localhost:4000/api/v1/sale_posts/')
+    .then(res => res.json())
+    .then(res => this.props.getPostsAction(res))
+  }
 
   render() {
     return (
@@ -39,3 +45,9 @@ export default class UserBlurb extends Component{
     )
   }
 }
+function mapStateToProps(state) {
+  return {
+    ...state
+  }
+}
+export default connect(mapStateToProps, actions)(UserBlurb);
