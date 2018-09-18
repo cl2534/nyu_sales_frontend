@@ -64,7 +64,7 @@ class UserBlurb extends Component{
         />
       )
     } else if (this.state.currentUserInstance){
-      console.log(this.state.currentUserInstance)
+
       return (
         <CardHeader
           avatar={
