@@ -26,7 +26,6 @@ class App extends Component {
           <Route exact path = '/sale-category' component = {SaleCategory}/>
           <Route exact path = '/new-post' component = {NewPost}/>
           <Route exact path = '/categorypage' component = {CategoryPage} />
-
           <Route exact path="/logout" component = {loginForm} />
         </div>
       </div>

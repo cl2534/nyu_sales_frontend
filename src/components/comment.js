@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Comment, Icon } from 'semantic-ui-react'
 import AccountCircle from '@material-ui/icons/AccountCircle';
+import Typography from "@material-ui/core/Typography";
 
 
 export default class comment extends Component {
@@ -26,16 +27,10 @@ export default class comment extends Component {
 
   render () {
     return (
-        <Comment>
-          <br />
-          <AccountCircle/>
-          <Comment.Content>
-            <Comment.Author>{this.state.currentUser.name}</Comment.Author>
-            <Comment.Text>
-              {this.props.comment}
-            </Comment.Text>
-          </Comment.Content>
-        </Comment>
+        <Typography key={comment._id}>
+          <strong>{this.state.currentUser.name}: </strong>
+          {this.props.comment}
+        </Typography>
     )
   }
 }
