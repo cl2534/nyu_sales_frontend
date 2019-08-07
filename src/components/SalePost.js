@@ -119,7 +119,9 @@ class SalePost extends Component{
       );
     });
   };
-
+  handleCardArea = e => {
+    console.log("card area");
+  };
   commentSubmit = (event) => {
     fetch('http://localhost:4000/api/v1/comments', {
       method: 'POST',
