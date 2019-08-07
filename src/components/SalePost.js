@@ -25,7 +25,7 @@ import ChatBubbleOutlineIcon from "@material-ui/icons/ChatBubbleOutline";
 import {connect} from 'react-redux'
 
 import UserBlurb from './UserBlurb'
-
+import { Button, Comment, Form, Header } from 'semantic-ui-react'
 import Comments from './comment'
 
 
@@ -81,6 +81,13 @@ class SalePost extends Component{
         }
         return <ul className="right-list"> Categories:  {returnArray} </ul>
   }
+  handleExpandClick = () => {
+    this.setState(state => ({ expanded:     !state.expanded }));
+  };
+
+  handleCommentClick = () => {
+    this.props.openCommentDialogAction(this.props._id);
+  };
 
   handleOpenPostMenu = e => {
     e.stopPropagation();
@@ -103,17 +110,17 @@ class SalePost extends Component{
 
 
   renderComments = () => {
-  return this.props.comments.map(comment => {
-    return (
-      <Typography key={comment._id}>
-        <strong>{comment.userName}: </strong>
-        {comment.content}
-      </Typography>
-    );
-  });
-};
+    return this.props.comments.map(comment => {
+      return (
+        <Typography key={comment._id}>
+          <strong>{comment.userName}: </strong>
+          {comment.content}
+        </Typography>
+      );
+    });
+  };
 
-  handleSubmit = (event) => {
+  commentSubmit = (event) => {
     fetch('http://localhost:4000/api/v1/comments', {
       method: 'POST',
       headers: {
@@ -182,7 +189,7 @@ class SalePost extends Component{
           </IconButton>
         }
         title= {this.props.salepost.name}
-        subheader = {this.props.salepost.user.name}
+        subheader = {this.props.salepost.price}
       />
       {this.props.salepost.picture_url ? (
         <CardMedia
@@ -192,9 +199,7 @@ class SalePost extends Component{
       ) : null}
     </CardActionArea>
     <CardActions className={classes.actions} disableActionSpacing>
-      <IconButton aria-label="Comment" onClick={this.handleCommentClick}>
-        <ChatBubbleOutlineIcon />
-      </IconButton>
+      Posted By: {this.props.salepost.user.name}
       <IconButton
         className={classnames(classes.expand, {
           [classes.expandOpen]: this.state.expanded
@@ -212,6 +217,13 @@ class SalePost extends Component{
           {this.props.salepost.comments ? this.props.salepost.comments.length : 0} Comments
         </Typography>
         {this.generateComments()}
+        <br/>
+        <Form reply onSubmit = {this.commentSubmit}>
+          <Form.TextArea value = {this.state.comments} onChange = {this.handleComment}/>
+          <Button content='Add Reply' labelPosition='left' icon='edit' primary />
+        </Form>
+
+
       </CardContent>
     </Collapse>
   </Card>
