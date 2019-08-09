@@ -1,31 +1,72 @@
-import React, { Fragment } from 'react'
-import { connect } from 'react-redux'
-import { NavLink, withRouter } from 'react-router-dom'
-import { Menu } from 'semantic-ui-react'
+import React from "react";
+import { Link, withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
+import { connect } from "react-redux";
+import {
+  Container,
+  Icon,
+  Image,
+  Menu,
+  Sidebar,
+  Responsive
+} from "semantic-ui-react";
 
-const Nav = ({ user: { loggedIn }, location: { pathname } }) => {
+const styles = {
+  root: {
+    flexGrow: 1
+  }
+};
+
+
+const Nav = (
+  children,
+  leftItems,
+  onPusherClick,
+  onToggle,
+  rightItems,
+  visible, { user: { loggedIn }, location: { pathname } }) => {
+
+  function handleClick() {
+    console.log('handleclick')
+  }
+
+  function handleHome(){
+    console.log("home")
+  }
+  const { classes } = props;
   return (
-    <Menu pointing secondary>
+    <div className={classes.root}>
+    <AppBar position="static" color="default">
+      <Toolbar>
+        <Grid container spacing={16} alignItems="center" direction="row">
       {loggedIn ? (
-        <Fragment>
-          <Menu.Item as={NavLink} to="/profile" name="Profile" active={pathname === '/profile'} />
-          <Menu.Item as={NavLink} to = '/sales'name = 'On Sale' active = {pathname ===
-            '/sales'} />
-          <Menu.Item as = {NavLink} to="/sale-category" name="Shop By Category" active = {pathname === '/sale-category'}  />
-          <Menu.Item as = {NavLink} to = '/new-post' name = 'Make a Post' active = {pathname === '/new-post'} />
+        <Grid item>
+                <IconButton
+                  className={classes.menuButton}
+                  aria-label="Menu"
+                  onClick={handleClick}
+                  style={{ color: "chocolate" }}
+                >
+                  <MenuIcon />
+                </IconButton>
+              </Grid>
+      ) : null}
+      <Grid item onClick={handleHome}>
+        <Link to="/" style={{ textDecoration: "none", color: "black" }}>
+          <Typography variant="title" style={{ color: "chocolate" }}>
+            TAILM8
+        </Typography>
+      </Link>
+    </Grid>
+    </Grid>
+  </Toolbar>
+</AppBar>
+</div>
 
-          <Menu.Menu position="right">
-            {/* TODO: logout */}
-            <Menu.Item as = {NavLink} to="/login" name="Logout" active = {pathname === '/login'}  />
-          </Menu.Menu>
-        </Fragment>
-      ) : (
-        <Menu.Item as={NavLink} to="/login" name="Login" active={pathname === '/login'} />
-      )}
-    </Menu>
   )
 }
 
 const mapStateToProps = ({ usersReducer: user }) => ({ user })
 
-export default withRouter(connect(mapStateToProps)(Nav))
+export default withRouter(connect(mapStateToProps)(withStyles(styles)(Nav)))
